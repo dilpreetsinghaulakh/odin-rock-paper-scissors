@@ -31,9 +31,6 @@ const playRound = () => {
 
     const playerSelection = getPlayerChoice();
 
-    console.log(playerSelection)
-    console.log(computerSelection)
-
     if (playerSelection === computerSelection) {
         console.log("Draw");
     }
