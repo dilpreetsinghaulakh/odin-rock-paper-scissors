@@ -29,19 +29,19 @@ const getPlayerChoice = () => {
 
 const result = (playerSelection, computerSelection) => {
     if(playerSelection === 0 && computerSelection === 2) {
-        console.log("You won")
+        console.log("You won");
     }
 
     else if(playerSelection === 1 && computerSelection === 0) {
-        console.log("You won")
+        console.log("You won");
     }
 
     else if(playerSelection === 2 && computerSelection === 1) {
-        console.log("You won")
+        console.log("You won");
     }
 
     else {
-        console.log("You lose")
+        console.log("You lose");
     }
 }
 
@@ -53,7 +53,7 @@ const playRound = () => {
     while(playerSelection == computerSelection) {
         computerSelection = getComputerChoice();
     }
-    result(playerSelection, computerSelection)
+    result(playerSelection, computerSelection);
     
 }
 
