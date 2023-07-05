@@ -7,7 +7,7 @@ const getPlayerChoice = () => {
 
     playerChoice = playerChoice.toLowerCase();
 
-    var numPlayerChoice = -1;
+    var numPlayerChoice = NaN;
 
     switch (playerChoice) {
         case "rock" :
