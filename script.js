@@ -57,6 +57,8 @@ const playRound = () => {
     
 }
 
-const test = () => {
-    playRound();
+const game = () => {
+    for (let i; i < 6; i++) {
+        playRound();
+    }
 }
