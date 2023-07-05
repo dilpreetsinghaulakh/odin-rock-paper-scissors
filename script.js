@@ -58,7 +58,7 @@ const playRound = () => {
 }
 
 const game = () => {
-    for (let i; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         playRound();
     }
 }
