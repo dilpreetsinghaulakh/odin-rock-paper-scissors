@@ -21,21 +21,14 @@ const getPlayerChoice = () => {
             break;
         default :
             console.log("Enter correct option");
+            getPlayerChoice();
             break;
     }
     return numPlayerChoice;
 }
 
-const playRound = () => {
-    var computerSelection = getComputerChoice();
-
-    const playerSelection = getPlayerChoice();
-
-    if (playerSelection === computerSelection) {
-        console.log("Draw");
-    }
-
-    else if(playerSelection === 0 && computerSelection === 2) {
+const result = (playerSelection, computerSelection) => {
+    if(playerSelection === 0 && computerSelection === 2) {
         console.log("You won")
     }
 
@@ -50,6 +43,18 @@ const playRound = () => {
     else {
         console.log("You lose")
     }
+}
+
+const playRound = () => {
+    var computerSelection = getComputerChoice();
+
+    const playerSelection = getPlayerChoice();
+
+    while(playerSelection == computerSelection) {
+        computerSelection = getComputerChoice();
+    }
+    result(playerSelection, computerSelection)
+    
 }
 
 const test = () => {
