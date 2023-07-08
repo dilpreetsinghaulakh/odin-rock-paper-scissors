@@ -4,72 +4,82 @@ const getComputerChoice = () => {
     return  Math.floor(Math.random() * 3);
 }
 
-// To get player's choice we prompt() and then convert it to lower case so that any capitalization works.
-// Then we create a new variable to store player's choice as number. 
-const getPlayerChoice = () => {
-    var playerChoice = prompt("Enter your Choice (i.e Rock, Paper or Scissors) :");
+const rock = document.querySelector('#🪨');
+const paper = document.querySelector('#📄');
+const scissors = document.querySelector('#✂️');
 
-    playerChoice = playerChoice.toLowerCase();
+const printResults = document.querySelector('#result');
 
-    var numPlayerChoice = NaN;
+rock.addEventListener('click', () => {playRound(0)});
 
-    switch (playerChoice) {
-        case "rock" :
-            numPlayerChoice = 0;
-            break;
-        case "paper" :
-            numPlayerChoice = 1;
-            break;
-        case "scissors" :
-            numPlayerChoice = 2;
-            break;
-        default :
-            console.log("Enter correct option");
-            getPlayerChoice();
-            break;
-    }
-    return numPlayerChoice;
-}
+paper.addEventListener('click', () => {playRound(1)});
 
-// To determine result we use game logic and console.log() it.
+scissors.addEventListener('click', () => {playRound(2)});
+
+var timesPlayed = 1;
+var timesLost = 0; //It would take more lines of code to count times won. 🤫
 const result = (playerSelection, computerSelection) => {
+    var toPrint = "";
+    
     if(playerSelection === 0 && computerSelection === 2) {
-        console.log("You won");
+        // console.log("You won");
+        toPrint = "You won!";
     }
 
     else if(playerSelection === 1 && computerSelection === 0) {
-        console.log("You won");
+        // console.log("You won");
+        toPrint = "You won!";
     }
 
     else if(playerSelection === 2 && computerSelection === 1) {
-        console.log("You won");
+        // console.log("You won");
+        toPrint = "You won!";
     }
 
     else {
-        console.log("You lose");
+        // console.log("You lose");
+        toPrint = "You lost!";
+        timesLost++;
+    }
+    const p = document.createElement('p');
+    p.textContent = toPrint;
+    printResults.appendChild(p);
+
+    if (timesPlayed > 4) {
+        const finalResult = document.createElement('h3');
+        if (timesLost < 3) {
+            finalResult.textContent = "You won form computer!";
+        }
+        else{
+            finalResult.textContent = "You lost to computer!";
+        }
+        timesPlayed = 0;
+        timesLost = 0;
+        printResults.appendChild(finalResult);
+    }
+    else{
+        timesPlayed++;
+    }
+
+    while (printResults.childElementCount > 6 ){
+        while (printResults.hasChildNodes()) {
+            printResults.removeChild(printResults.firstChild);
+        }
     }
 }
 
-// This function first get computer's selection,
-// then it takes player's selection.
-// If player's selection and computer's selection are same then,
-// we use a while() loop to get new computer's choice until it is different.
-// After this we pass both selections as arguments of result() function.
-const playRound = () => {
+
+
+const playRound = (playerChoice) => {
+
     var computerSelection = getComputerChoice();
 
-    const playerSelection = getPlayerChoice();
+    const playerSelection = playerChoice;
 
     while(playerSelection == computerSelection) {
         computerSelection = getComputerChoice();
     }
     result(playerSelection, computerSelection);
     
-}
-
-// This function just play game five times
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
+    // console.log("timesPlayed"+timesPlayed)
 }
